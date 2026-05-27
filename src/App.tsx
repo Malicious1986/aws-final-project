@@ -21,6 +21,7 @@ function App() {
 
   return (
     <>
+    <p>Test</p>
       <ul>{result.map((r: User) => (
         <li key={r.id}>{r.first_name} {r.last_name} {r.email}</li>
       ))}</ul>
