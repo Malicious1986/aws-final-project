@@ -66,10 +66,6 @@ jobs:
             --cluster "$ECS_CLUSTER" \
             --service "$ECS_SERVICE" \
             --force-new-deployment
-            
-          aws ecs wait services-stable \
-          --cluster "$ECS_CLUSTER" \
-          --services "$ECS_SERVICE"
 
       - name: Deploy Lambda functions
         run: npm run deploy:lambdas
