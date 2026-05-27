@@ -38,7 +38,6 @@ export const handler = async (event) => {
       first_name,
       last_name,
       email,
-      password_hash,
     } = body;
 
     const db = await getDbConfig();
@@ -61,17 +60,15 @@ export const handler = async (event) => {
       INSERT INTO users (
         first_name,
         last_name,
-        email,
-        password_hash
+        email
       )
-      VALUES ($1, $2, $3, $4)
+      VALUES ($1, $2, $3)
       RETURNING *
       `,
       [
         first_name,
         last_name,
         email,
-        password_hash,
       ]
     );
 
