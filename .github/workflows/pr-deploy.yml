@@ -1,4 +1,4 @@
-name: PR Deploy
+name: Deploy
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pr-deploy-${{ github.event.pull_request.number }}
+  group: deploy-main
   cancel-in-progress: true
 
 env:
@@ -18,11 +18,10 @@ env:
   ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
   ECS_CLUSTER: ${{ vars.ECS_CLUSTER }}
   ECS_SERVICE: ${{ vars.ECS_SERVICE }}
-  IMAGE_TAG: pr-${{ github.event.pull_request.number }}-${{ github.sha }}
+  IMAGE_TAG: main-${{ github.sha }}
 
 jobs:
   deploy:
-    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
 
     steps:
